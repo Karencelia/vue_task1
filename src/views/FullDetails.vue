@@ -21,12 +21,12 @@ onMounted(() => {
       <p>{{ item.details }}</p>
       <div class="flex gap-4">
         <div>
-          <button class="w-40 h-10 py-2 bg-[#60CED4] text-white text-[12px] rounded-md hover:bg-blue-600">
+          <button class="w-40 h-10 py-2 bg-[#60CED4] text-white text-[12px] rounded-md hover:bg-[#60CED4]">
                     Edit
                 </button>
         </div>
         <div>
-          <button class="w-40 h-10 py-2 bg-red-500 text-white text-[12px] rounded-md hover:bg-blue-600">
+          <button class="w-40 h-10 py-2 bg-red-500 text-white text-[12px] rounded-md hover:bg-red-600">
                     Delete
                 </button>
         </div>
