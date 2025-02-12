@@ -14,7 +14,6 @@ const isAuthPage = () => {
 
 <template>
   <div class="h-screen flex flex-col justify-between">
-    <!-- Conditional Navbar -->
     <component :is="isAuthPage() ? AuthNavbar : MainNavbar" />
 
     <!-- Main Content -->

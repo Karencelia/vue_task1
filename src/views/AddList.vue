@@ -30,36 +30,49 @@ const handleSubmit = async () => {
 };
 </script>
 <template>
-    <div class="block ">
-        <form @submit.prevent="handleSubmit">
-            <div class="w-[450px] pl-[120px] mb-[100px]">
-              <p class=" mb-2 text-[12px]">Date in the future</p>
-            <input type="text"
-            v-model="form.date"
-              id="date"
-              name="date"
-              placeholder=""
-              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-            <p class="mt-6 text-[12px]">Title</p>
-            <input type="text"
-            v-model="form.topic"
-              id="topic"
-              name="topic"
-              placeholder=""
-              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-            <p class="mt-6 text-[12px]">Details</p>
-            <input type="text"
-            v-model="form.details"
-            id="details"
-            name="details"
-                class="w-[330px] h-[200px] border rounded-md">
+  <div class="flex justify-center lg:justify-start items-center min-h-screen px-4">
+    <form @submit.prevent="handleSubmit" class="w-full sm:w-[450px] lg:pl-[120px] mb-[100px]">
+      <div class="mb-6">
+        <p class="mb-2 text-[12px] text-gray-700">Date in the future</p>
+        <input 
+          type="text"
+          v-model="form.date"
+          id="date"
+          name="date"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+      </div>
 
-            <div class="text-center mt-6 ">
-                <button class="w-48 h-10 py-2 bg-blue-500 text-white text-[12px] rounded-md hover:bg-blue-600">
-                    Save
-                </button>
-            </div>
-            </div>
-        </form>
-    </div>
+      <div class="mb-6">
+        <p class="mb-2 text-[12px] text-gray-700">Title</p>
+        <input 
+          type="text"
+          v-model="form.topic"
+          id="topic"
+          name="topic"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+      </div>
+
+      <div class="mb-6">
+        <p class="mb-2 text-[12px] text-gray-700">Details</p>
+        <input 
+          type="text"
+          v-model="form.details"
+          id="details"
+          name="details"
+          class="w-full sm:w-[330px] h-[200px] border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+      </div>
+
+      <div class="text-center">
+        <button 
+          type="submit"
+          class="w-full sm:w-48 h-10 bg-blue-500 text-white text-[12px] rounded-md hover:bg-blue-600 transition"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
 </template>

@@ -29,11 +29,12 @@ function handleLogin(event) {
         <h1 class="text-lg lg:text-[25px] font-bold mb-2 text-left welcome">
           Welcome back,
         </h1>
-        <p class="text-[#000000]-500 mb-4 mt-6 text-left text-lg lg:text-[14px] leading-normal">
-          Hi, my name is Eventful Moments, I am a bucket... no, not the bucket
-          of water but I store awesome moments you will like to have in coming
-          years.
-        </p>
+        <p class="text-black mb-4 mt-6 text-left text-base md:text-lg lg:text-[14px] leading-normal">
+  Hi, my name is Eventful Moments, I am a bucket... no, not the bucket
+  of water but I store awesome moments you will like to have in coming
+  years.
+</p>
+
 
         <form @submit="handleLogin" class="space-y-4">
           <div>

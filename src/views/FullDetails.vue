@@ -13,27 +13,25 @@ onMounted(() => {
 </script>
 
 <template>
-    <div v-if="item" class="flex flex-col justify-start px-10 pt-[20px] mb-2">
-      <h3 class="font-bold text-[20px]">{{ item.topic }}</h3>
-      <div>
-        <p>{{ item.enddate }}</p>
-      </div>
-      <p>{{ item.details }}</p>
-      <div class="flex gap-4">
-        <div>
-          <button class="w-40 h-10 py-2 bg-[#60CED4] text-white text-[12px] rounded-md hover:bg-[#60CED4]">
-                    Edit
-                </button>
-        </div>
-        <div>
-          <button class="w-40 h-10 py-2 bg-red-500 text-white text-[12px] rounded-md hover:bg-red-600">
-                    Delete
-                </button>
-        </div>
-      </div>
+  <div v-if="item" class="flex flex-col justify-start px-4 sm:px-6 md:px-10 pt-5">
+    <div class="mb-6 sm:mb-8">
+      <h3 class="font-bold text-lg sm:text-xl md:text-2xl mb-2">{{ item.topic }}</h3>
+      <p class="text-gray-500 text-sm sm:text-base">{{ item.enddate }}</p>
     </div>
-    <div v-else class="pt-[20px] pl-[20px]">
-      <p>Item not found</p>
+
+    <p class="text-base sm:text-lg md:text-[14px] leading-6 sm:leading-7" v-html="item.details"></p>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-10">
+      <button class="w-full sm:w-40 h-10 py-2 bg-[#60CED4] text-white text-sm rounded-md hover:bg-[#50B6BE] transition">
+        Edit
+      </button>
+      <button class="w-full sm:w-40 h-10 py-2 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition">
+        Delete
+      </button>
     </div>
-  </template>
-  
+  </div>
+
+  <div v-else class="pt-5 px-4">
+    <p class="text-gray-600">Item not found</p>
+  </div>
+</template>

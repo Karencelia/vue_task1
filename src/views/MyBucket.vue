@@ -46,47 +46,54 @@ const getDescription = (details, id) => {
 </script>
 
 <template>
-  <div class="px-24 py-10">
-    <div class="flex justify-between">
+  <div class="px-6 md:px-12 lg:px-24 py-10">
+    <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center">
       <div>
-        <h1 class="text-[25px] text-left mt-[10px] mb-1 buckettext">Welcome John Doe,</h1>
-        <p class="text-[10px] mb-6">Here are items in your eventful moment bucket.</p>
+        <h1 class="text-xl md:text-[25px] text-left mt-[10px] mb-1 buckettext">
+          Welcome John Doe,
+        </h1>
+        <p class="text-xs md:text-[10px] mb-6">
+          Here are items in your eventful moment bucket.
+        </p>
       </div>
-      <div>
+      <div class="w-full md:w-auto flex justify-start md:justify-end">
         <button 
           @click="router.push('/addlist')"
-          class="w-40 h-10 py-2 mb-10 bg-blue-500 mt-6 text-white text-[12px] rounded-md hover:bg-blue-600 border border-[#707070]">
+          class="w-full md:w-40 h-10 py-2 mb-6 md:mb-10 bg-blue-500 mt-6 text-white text-sm rounded-md hover:bg-blue-600 border border-[#707070]">
           Add Item
         </button>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-lg">
-      <div class="shadow-lg rounded-md p-6 hover:bg-[#FFF5A7]" v-for="item in bucketList" :key="item.id">
-        <h3 class="text-700 text-[14px] buckettext">{{ item.topic }}</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 rounded-lg">
+      <div 
+        class="shadow-lg rounded-md p-6 hover:bg-[#FFF5A7]" 
+        v-for="item in bucketList" 
+        :key="item.id">
+        <h3 class="text-[14px] buckettext">{{ item.topic }}</h3>
 
-        <p class="mt-6 text-[12px] opacity-100 leading-5">
+        <p class="mt-6 text-xs md:text-[12px] opacity-100 leading-5">
           {{ getDescription(item.details, item.id) }}
         </p>
 
-        <div class="flex justify-between text-[12px] mt-4">
+        <div class="flex flex-col md:flex-row md:justify-between text-xs md:text-[12px] mt-4">
           <button @click="router.push(`/mybucket/${String(item.id)}`)">
             View Details
           </button>
-          <div class="flex gap-8">
+          <div class="flex gap-4 md:gap-8 mt-2 md:mt-0">
             <p class="text-[#B2B2B2]">{{ item.startdate }}</p>
             <p>{{ item.enddate }}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="flex justify-center">
-    <button
-      type="submit"
-      class="w-40 h-10 py-2 mb-10 bg-blue-500 mt-6 text-white text-[12px] rounded-md hover:bg-blue-600 border border-[#707070]">
-      Load More
-    </button>
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        class="w-full md:w-40 h-10 py-2 mb-10 bg-blue-500 mt-6 text-white text-sm rounded-md hover:bg-blue-600 border border-[#707070]">
+        Load More
+      </button>
+    </div>
   </div>
 </template>

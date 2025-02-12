@@ -24,10 +24,10 @@ function handleCreateAccount(event) {
 </script>
 
 <template>
-  <div class="flex flex-col justify-between">
+  <div class="flex flex-col">
     <Navbar />
-    <main class="flex flex-col items-center justify-center flex-1 mx-4">
-      <div class="w-[450px] text-center">
+    <main class="flex flex-col items-center justify-center flex-1 px-4">
+      <div class="w-full max-w-[450px] text-center">
         <h1 class="text-lg lg:text-[25px] font-bold mb-2 text-left create">Create an account,</h1>
 
         <form @submit.prevent="handleCreateAccount" class="space-y-4">
@@ -36,7 +36,7 @@ function handleCreateAccount(event) {
             <input
               type="text"
               v-model="fullName"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
@@ -44,7 +44,7 @@ function handleCreateAccount(event) {
             <input
               type="email"
               v-model="email"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
@@ -52,12 +52,12 @@ function handleCreateAccount(event) {
             <input
               type="password"
               v-model="password"
-              class="w-full px-4 py-2 border border-gray-300 rounded-md"
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button
             type="submit"
-            class="w-48 h-10 py-2 bg-blue-500 text-white text-[12px] rounded-md hover:bg-blue-600"
+            class="w-full sm:w-48 h-10 py-2 bg-blue-500 text-white text-[12px] rounded-md hover:bg-blue-600 transition"
           >
             Create
           </button>
