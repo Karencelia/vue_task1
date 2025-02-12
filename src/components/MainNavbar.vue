@@ -7,7 +7,7 @@ function handleLogout() {
   localStorage.removeItem("isAuthenticated");
   localStorage.removeItem("userFullName");
   localStorage.removeItem("userEmail");
-  router.push("/login");
+  router.push("/");
 }
 </script>
 
