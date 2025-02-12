@@ -13,7 +13,7 @@ const route = useRoute();
         </RouterLink>
         <div class="space-x-4">
           <RouterLink
-            to="/login"
+            to="/"
             :class="[route.path === '/login' ? 'text-[#FFFFFF] font-bold' : 'text-[#FFFFFF]']"
           >
             Login
