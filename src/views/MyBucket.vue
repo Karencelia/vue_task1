@@ -11,13 +11,10 @@ const fetchAndSaveBucketList = async () => {
     const response = await fetch('/bucketList.json');
     const data = await response.json();
 
-    // Save to localStorage
     localStorage.setItem('bucketList', JSON.stringify(data.bucketList));
 
-    // Update reactive bucketList
     bucketList.value = data.bucketList;
 
-    // Initialize expandItems state
     bucketList.value.forEach(item => {
       expandItems.value[item.id] = false;
     });
@@ -32,11 +29,9 @@ onMounted(() => {
   const storedData = localStorage.getItem('bucketList');
 
   if (storedData) {
-    // Load from localStorage
     bucketList.value = JSON.parse(storedData);
     console.log('Bucket list loaded from localStorage:', bucketList.value);
   } else {
-    // Fetch and save if not in localStorage
     fetchAndSaveBucketList();
   }
 });

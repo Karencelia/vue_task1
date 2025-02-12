@@ -10,11 +10,10 @@ const password = ref('');
 const errorMessage = ref('');
 
 function handleLogin(event) {
-  event.preventDefault(); // Prevent page refresh
+  event.preventDefault();
   
-  // Validation logic: Check if both fields are filled
   if (email.value && password.value) {
-    router.push('/mybucket'); // Redirect to My Bucket page
+    router.push('/mybucket');
   } else {
     errorMessage.value = 'Please fill in all fields';
   }
@@ -23,10 +22,8 @@ function handleLogin(event) {
 
 <template>
   <div class="flex flex-col justify-between">
-    <!-- Navbar -->
     <Navbar />
 
-    <!-- Main Content -->
     <main class="flex flex-col items-center justify-center flex-1 mx-4">
       <div class="max-w-md w-full text-center">
         <h1 class="text-lg lg:text-[25px] font-bold mb-2 text-left welcome">

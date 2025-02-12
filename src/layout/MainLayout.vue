@@ -23,6 +23,8 @@ const isAuthPage = () => {
     </main>
 
     <!-- Footer -->
-    <Footer />
+    <div class="text-center text-[14px]">
+      <Footer />
+    </div>
   </div>
 </template>

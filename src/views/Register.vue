@@ -10,14 +10,13 @@ const password = ref('');
 const errorMessage = ref('');
 
 function handleCreateAccount(event) {
-  event.preventDefault(); // Prevent form refresh
+  event.preventDefault();
 
   if (!fullName.value || !email.value || !password.value) {
     errorMessage.value = 'All fields are required';
     return;
   }
 
-  // Wait for Vue to finish updates, then navigate
   nextTick(() => {
     router.push('/mybucket');
   });
