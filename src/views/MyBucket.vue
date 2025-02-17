@@ -5,7 +5,7 @@ import { onMounted, ref } from 'vue';
 const router = useRouter();
 const bucketList = ref([]);
 const expandItems = ref({});
-const fullName = ref("Guest"); // Default to "Guest" if no user is logged in
+const fullName = ref("Guest");
 
 const fetchAndSaveBucketList = async () => {
   try {
@@ -27,11 +27,11 @@ const fetchAndSaveBucketList = async () => {
 };
 
 onMounted(() => {
-  // Retrieve logged-in user details
+
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
   if (loggedInUser) {
-    fullName.value = loggedInUser.fullName; // Set the name of the logged-in user
+    fullName.value = loggedInUser.fullName;
   }
 
   const storedData = localStorage.getItem('bucketList');

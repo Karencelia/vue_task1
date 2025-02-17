@@ -1,25 +1,47 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-// Form input fields
 const email = ref("");
 const password = ref("");
 
-// Error messages
 const emailError = ref("");
 const passwordError = ref("");
 
-// Handle user login
+function validateInput() {
+  emailError.value = "";
+  passwordError.value = "";
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email.value) {
+    emailError.value = "Email is required";
+  } else if (!emailPattern.test(email.value)) {
+    emailError.value = "Enter a valid email address";
+  }
+
+  if (!password.value) {
+    passwordError.value = "Password is required";
+  } else if (password.value.length < 6) {
+    passwordError.value = "Password must be at least 6 characters";
+  }
+  setTimeout(() => {
+    emailError.value = "";
+    passwordError.value = "";
+  }, 3000)
+
+  return !emailError.value && !passwordError.value;
+}
+
 function handleLogin(event) {
   event.preventDefault();
 
-  // Get users from localStorage
+  if (!validateInput()) return;
+
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
-  // Find user by email and password
   const user = users.find(
     (u) => u.email === email.value && u.password === password.value
   );
@@ -35,10 +57,8 @@ function handleLogin(event) {
     return;
   }
 
-  // Store logged-in user details in localStorage
   localStorage.setItem("loggedInUser", JSON.stringify(user));
 
-  // Redirect to /mybucket after successful login
   router.push("/mybucket");
 }
 </script>
@@ -65,7 +85,6 @@ function handleLogin(event) {
               v-model="email"
               type="email"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
             />
             <p v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</p>
           </div>
@@ -76,7 +95,6 @@ function handleLogin(event) {
               v-model="password"
               type="password"
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-              required
             />
             <p v-if="passwordError" class="text-red-500 text-sm">{{ passwordError }}</p>
           </div>

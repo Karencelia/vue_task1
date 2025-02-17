@@ -14,18 +14,15 @@ const passwordError = ref("");
 function handleCreateAccount(event) {
   event.preventDefault();
 
-  // Trim values to remove whitespace
   const fullNameValue = fullName.value.trim();
   const emailValue = email.value.trim();
   const passwordValue = password.value.trim();
 
-  // Check if fields are empty
   if (!fullNameValue || !emailValue || !passwordValue) {
     nameError.value = fullNameValue ? "" : "Please enter a name";
     emailError.value = emailValue ? "" : "Please enter an email";
     passwordError.value = passwordValue ? "" : "Please enter a password";
 
-    // Remove errors after 2 seconds
     setTimeout(() => {
       nameError.value = "";
       emailError.value = "";
@@ -34,33 +31,28 @@ function handleCreateAccount(event) {
     return;
   }
 
-  // Get existing users from localStorage
   const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-  // Check if email is already registered
   const userExists = existingUsers.some((user) => user.email === emailValue);
 
   if (userExists) {
     emailError.value = "Email is already registered";
 
-    // Remove error after 2 seconds
     setTimeout(() => {
       emailError.value = "";
     }, 2000);
     return;
   }
 
-  // Save new user to localStorage
   const newUser = {
     fullName: fullNameValue,
     email: emailValue,
-    password: passwordValue, // Hashing passwords is recommended for security
+    password: passwordValue,
   };
 
   existingUsers.push(newUser);
   localStorage.setItem("users", JSON.stringify(existingUsers));
 
-  // Redirect after successful registration
   nextTick(() => {
     router.push("/mybucket");
   });

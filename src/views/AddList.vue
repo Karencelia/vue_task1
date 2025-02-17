@@ -14,7 +14,6 @@ const form = reactive({
 
 const bucketList = ref([]);
 
-// Load bucket list from localStorage when the component mounts
 onMounted(() => {
   const storedList = localStorage.getItem('bucketList');
   if (storedList) {
@@ -22,7 +21,6 @@ onMounted(() => {
   }
 });
 
-// Validate if the date is in the future
 const isValidDate = (dateString) => {
   const today = new Date();
   const [month, day, year] = dateString.split('/').map(Number);
@@ -31,7 +29,7 @@ const isValidDate = (dateString) => {
 };
 
 const handleSubmit = () => {
-  // Input validation
+
   if (!form.date || !form.topic || !form.details) {
     toast.error('Please fill in all fields');
     return;
@@ -43,22 +41,18 @@ const handleSubmit = () => {
   }
 
   const newList = {
-    id: Date.now(), // Generate a unique ID
+    id: Date.now(),
     date: form.date,
     topic: form.topic,
     details: form.details,
   };
 
-  // Add new item to the local list
   bucketList.value.push(newList);
 
-  // Save updated list to localStorage
   localStorage.setItem('bucketList', JSON.stringify(bucketList.value));
 
-  // Show success toast
   toast.success('List Added Successfully');
 
-  // Redirect to the bucket list page
   router.push('/mybucket');
 };
 </script>
