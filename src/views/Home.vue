@@ -1,22 +1,45 @@
 <script setup>
-// import Navbar from '@/components/Navbar.vue';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const email = ref('');
-const password = ref('');
-const errorMessage = ref('');
+// Form input fields
+const email = ref("");
+const password = ref("");
 
+// Error messages
+const emailError = ref("");
+const passwordError = ref("");
+
+// Handle user login
 function handleLogin(event) {
   event.preventDefault();
-  
-  if (email.value && password.value) {
-    router.push('/mybucket');
-  } else {
-    errorMessage.value = 'Please fill in all fields';
+
+  // Get users from localStorage
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Find user by email and password
+  const user = users.find(
+    (u) => u.email === email.value && u.password === password.value
+  );
+
+  if (!user) {
+    emailError.value = "Invalid email or password";
+    passwordError.value = "Invalid email or password";
+
+    setTimeout(() => {
+      emailError.value = "";
+      passwordError.value = "";
+    }, 2000);
+    return;
   }
+
+  // Store logged-in user details in localStorage
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+  // Redirect to /mybucket after successful login
+  router.push("/mybucket");
 }
 </script>
 
@@ -30,11 +53,10 @@ function handleLogin(event) {
           Welcome back,
         </h1>
         <p class="text-black mb-4 mt-6 text-left text-base md:text-lg lg:text-[14px] leading-normal">
-  Hi, my name is Eventful Moments, I am a bucket... no, not the bucket
-  of water but I store awesome moments you will like to have in coming
-  years.
-</p>
-
+          Hi, my name is Eventful Moments, I am a bucket... no, not the bucket
+          of water but I store awesome moments you will like to have in coming
+          years.
+        </p>
 
         <form @submit="handleLogin" class="space-y-4">
           <div>
@@ -42,23 +64,22 @@ function handleLogin(event) {
             <input
               v-model="email"
               type="email"
-              placeholder=""
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
+            <p v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</p>
           </div>
+
           <div>
             <p class="text-left text-gray-600 text-[14px]">Password</p>
             <input
               v-model="password"
               type="password"
-              placeholder=""
               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
             />
+            <p v-if="passwordError" class="text-red-500 text-sm">{{ passwordError }}</p>
           </div>
-
-          <p v-if="errorMessage" class="text-red-500 text-sm">{{ errorMessage }}</p>
 
           <button
             type="submit"

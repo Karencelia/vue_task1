@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue';
 const router = useRouter();
 const bucketList = ref([]);
 const expandItems = ref({});
+const fullName = ref("Guest"); // Default to "Guest" if no user is logged in
 
 const fetchAndSaveBucketList = async () => {
   try {
@@ -26,6 +27,13 @@ const fetchAndSaveBucketList = async () => {
 };
 
 onMounted(() => {
+  // Retrieve logged-in user details
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+  if (loggedInUser) {
+    fullName.value = loggedInUser.fullName; // Set the name of the logged-in user
+  }
+
   const storedData = localStorage.getItem('bucketList');
 
   if (storedData) {
@@ -35,10 +43,6 @@ onMounted(() => {
     fetchAndSaveBucketList();
   }
 });
-
-// const toggleDescription = (id) => {
-//   expandItems.value[id] = !expandItems.value[id];
-// };
 
 const getDescription = (details, id) => {
   return expandItems.value[id] ? details : details.substring(0, 534) + '...';
@@ -50,7 +54,7 @@ const getDescription = (details, id) => {
     <div class="flex flex-col md:flex-row md:justify-between items-start md:items-center">
       <div>
         <h1 class="text-xl md:text-[25px] text-left mt-[10px] mb-1 buckettext">
-          Welcome John Doe,
+          Welcome {{ fullName }},
         </h1>
         <p class="text-xs md:text-[10px] mb-6">
           Here are items in your eventful moment bucket.
