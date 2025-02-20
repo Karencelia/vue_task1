@@ -4,6 +4,7 @@ import Register from '@/views/Register.vue';
 import MyBucket from '@/views/MyBucket.vue';
 import AddList from '@/views/AddList.vue';
 import FullDetails from '@/views/FullDetails.vue';
+import EditList from '@/views/EditList.vue';
 
 
 const router = createRouter({
@@ -39,6 +40,12 @@ const router = createRouter({
       path: '/mybucket/:id',
       name: 'full-details',
       component: FullDetails,
+      props: true,
+    },
+    {
+      path: '/edit/:id',
+      name: 'edit-list',
+      component: EditList,
       props: true,
     },
 
